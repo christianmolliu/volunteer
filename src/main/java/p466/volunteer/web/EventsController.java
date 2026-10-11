@@ -29,11 +29,6 @@ public class EventsController {
     public Iterable<Event> getAllEvents(Model model) {
         return eventRepository.findAll();
     }
-    // event for new post in createEvent.html
-    @ModelAttribute("event")
-    public Event getEvent(Model model) {
-        return new Event();
-    }
 
     // add user to model for use in HTML forms
     @ModelAttribute("user")
@@ -47,22 +42,6 @@ public class EventsController {
     @GetMapping("/")
     public String getEvents() {
         return "events";
-    }
-
-    @GetMapping("/create")
-    public String getCreateEvent() {
-        return "createEvent";
-    }
-
-    @PostMapping("/create")
-    public String processCreateEvent(@Valid Event event, Errors errors) {
-
-        if(errors.hasErrors()) {
-            return "createEvent";
-        }
-
-        eventRepository.save(event);
-        return "redirect:/";
     }
 
 }
