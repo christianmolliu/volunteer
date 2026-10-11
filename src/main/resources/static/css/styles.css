@@ -1,0 +1,20 @@
+h1 {
+    text-align: center;
+    color: darkgreen;
+}
+.title1 {
+    font-size: 2em;
+    color: red;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+}
+.d {
+    font-size: 1em;
+    color: blue;
+    padding-top: 0;
+    margin-top: 0;
+    padding-left: 20px;
+}
+.event {
+    outline: 2px solid darkgreen;
+}

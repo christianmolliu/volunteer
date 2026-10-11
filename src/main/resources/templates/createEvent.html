@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Volunteer Finder</title>
+  <link rel="stylesheet" type="text/css" th:href="@{../css/styles.css}" />
+</head>
+<body>
+<form method="POST" th:action="@{/create}" th:object="${event}">
+    <h1>Create an Event</h1>
+    <div>
+      <h2>Title</h2>
+      <input type="text" th:field="*{title}"/>
+      <br>
+      <h2>Description</h2>
+      <input type="text" th:field="*{description}">
+      <br>
+      <label>
+        <h2>Start Date</h2>
+        <input type="date" th:field="*{startDate}">
+      </label>
+      <br>
+      <label>
+        <h2>End Date</h2>
+        <input type="date" th:field="*{endDate}">
+      </label>
+    </div>
+    <br>
+    <button>Submit</button>
+  </form>
+  <a href="/">Back to Events</a>
+  <div>
+    <a href="/login">login</a>
+    <a href="/register">register</a>
+  </div>
+</body>
+</html>

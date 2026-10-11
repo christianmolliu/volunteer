@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Volunteer Finder</title>
+    <link rel="stylesheet" type="text/css" th:href="@{../css/styles.css}" />
+</head>
+<body>
+    <h1 class="test">This is the Events page</h1>
+    <br>
+    <a href="/create">Create an event</a>
+    <div class="event" th:each="event: ${eventsList}">
+        <p class="title1" th:text="${event.title}"></p>
+        <p class="d" th:text="${event.description}"></p>
+    </div>
+    <div>
+        <a href="/login">login</a>
+        <a href="/register">register</a>
+    </div>
+</body>
+</html>
