@@ -1,6 +1,5 @@
 h1 {
     text-align: center;
-    color: darkgreen;
 }
 .title1 {
     font-size: 2em;
@@ -15,13 +14,41 @@ h1 {
     margin-top: 0;
     padding-left: 20px;
 }
+.events {
+    margin-left: 15px;
+    margin-right: 15px;
+}
 .event {
-    outline: 2px solid darkgreen;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+.create-event {
+    margin-left: 15px;
 }
 .login-logout {
-    text-align: right;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
 }
-header {
-    padding: 20px 10px;
+.header {
+    padding: 15px 10px;
     overflow: hidden;
+    background-color: #fff;
+    border-bottom: 1px solid darkgreen;
+    margin: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: row;
+
+}
+.logo {
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    width: 60px;
+}
+body {
+    margin: 0;
 }

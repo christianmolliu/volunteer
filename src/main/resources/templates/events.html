@@ -5,25 +5,28 @@
     <link rel="stylesheet" type="text/css" th:href="@{../css/styles.css}" />
 </head>
 <body>
-    <header>
+    <div class="header">
+        <img class="logo" th:src="@{images/black-white-letter-v-minimalistic-lines-logo.svg}"/>
         <div class="login-logout">
-            <div th:if="${user == null}">
+            <div class="login-reg" th:if="${user == null}">
                 <a href="/login">login</a>
                 <a href="/register">register</a>
             </div>
-            <div th:if="${user != null}">
+            <div class="logout" th:if="${user != null}">
                 <form method="POST" th:action="@{/logout}">
                     <input type="submit" value="Logout">
                 </form>
             </div>
         </div>
-    </header>
-    <h1 class="test">This is the Events page</h1>
+    </div>
+    <h1>Events Near You</h1>
     <br>
-    <a href="/create">Create an event</a>
-    <div class="event" th:each="event: ${eventsList}">
-        <p class="title1" th:text="${event.title}"></p>
-        <p class="d" th:text="${event.description}"></p>
+    <a class="create-event" href="/create">Create an event</a>
+    <div class="events">
+        <div class="event" th:each="event: ${eventsList}">
+            <p class="title1" th:text="${event.title}"></p>
+            <p class="d" th:text="${event.description}"></p>
+        </div>
     </div>
 </body>
 </html>

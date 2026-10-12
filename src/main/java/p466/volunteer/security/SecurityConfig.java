@@ -45,28 +45,10 @@ public class SecurityConfig {
     }
 
     @Bean
-    @Order(Ordered.HIGHEST_PRECEDENCE)
-    public SecurityFilterChain h2ConsoleSecurityFilterChain(
-            HttpSecurity http) throws Exception {
-
-        http
-                .securityMatcher(PathRequest.toH2Console())
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()
-                )
-                .csrf(csrf -> csrf.disable())
-                .headers(headers -> headers
-                        .frameOptions(frame -> frame.sameOrigin())
-                );
-
-        return http.build();
-    }
-
-    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/create/**").hasRole("ORGANIZER")
+                        .requestMatchers("/create", "/create/**").hasRole("ORGANIZER")
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form
