@@ -18,3 +18,10 @@ h1 {
 .event {
     outline: 2px solid darkgreen;
 }
+.login-logout {
+    text-align: right;
+}
+header {
+    padding: 20px 10px;
+    overflow: hidden;
+}
