@@ -6,7 +6,7 @@
 </head>
 <body>
 <form method="POST" th:action="@{/create}" th:object="${event}">
-  <header>
+  <div class="header">
     <div class="login-logout">
       <div th:if="${user == null}">
         <a href="/login">login</a>
@@ -18,7 +18,7 @@
         </form>
       </div>
     </div>
-  </header>
+  </div>
     <h1>Create an Event</h1>
     <div>
       <h2>Title</h2>

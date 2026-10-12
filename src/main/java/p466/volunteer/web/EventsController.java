@@ -33,8 +33,9 @@ public class EventsController {
     // add user to model for use in HTML forms
     @ModelAttribute("user")
     public User getUser(Model model, Authentication authentication) {
-        if (authentication != null) {
-            return (User) authentication.getPrincipal();
+        if (authentication != null &&
+                authentication.getPrincipal() instanceof User user) {
+            return user;
         }
         return null;
     }
