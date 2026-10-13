@@ -35,4 +35,8 @@ public class Event {
     @NotBlank(message = "Location is required")
     private String location;
 
+    private Long userId;
+
+    private Long organizationId;
+
 }

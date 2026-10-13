@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Volunteer Finder</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<div class="header">
+    <img class="logo" th:src="@{/images/black-white-letter-v-minimalistic-lines-logo.svg}"/>
+    <div class="login-logout">
+        <div class="login-reg" th:if="${user == null}">
+            <a href="/login">login</a>
+            <a href="/register">register</a>
+        </div>
+        <div class="logout" th:if="${user != null}">
+            <form method="POST" th:action="@{/logout}">
+                <input type="submit" value="Logout">
+            </form>
+            <img class="noti" th:src="@{/images/noti-icon.png}">
+        </div>
+    </div>
+</div>
+<form method="POST" th:action="@{/organization/create}" th:object="${org}">
+    <h1>Create an organization</h1>
+    <h2>Name</h2>
+    <input type="text" th:field="*{name}">
+    <button>Create organization</button>
+</form>
+<a href="/">Back to Events</a>
+</body>
+</html>

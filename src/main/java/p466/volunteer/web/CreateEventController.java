@@ -2,6 +2,7 @@ package p466.volunteer.web;
 
 import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -44,10 +45,12 @@ public class CreateEventController {
     }
 
     @PostMapping()
-    public String processCreateEvent(@Valid Event event, Errors errors) {
+    public String processCreateEvent(@Valid Event event, Errors errors, @AuthenticationPrincipal User user) {
         if(errors.hasErrors()) {
             return "createEvent";
         }
+        event.setUserId(user.getId());
+        event.setOrganizationId(1L); // until I link organizations and users
         eventRepository.save(event);
         return "redirect:/";
     }
