@@ -30,6 +30,18 @@ h1 {
     display: flex;
     align-items: center;
 }
+.logout {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 15px;
+}
+.noti {
+    margin: 0;
+    padding: 0;
+    height: 40px;
+    width: 40px;
+}
 .header {
     padding: 15px 10px;
     overflow: hidden;

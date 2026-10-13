@@ -1,4 +1,4 @@
-package p466.volunteer;
+package p466.volunteer.domain;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 @Table("USERS")
 @Data

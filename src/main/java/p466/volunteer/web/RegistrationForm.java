@@ -1,8 +1,8 @@
-package p466.volunteer.security;
+package p466.volunteer.web;
 
 import lombok.Data;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import p466.volunteer.User;
+import p466.volunteer.domain.User;
 
 import java.util.List;
 

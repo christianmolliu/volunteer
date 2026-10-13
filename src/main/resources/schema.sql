@@ -22,5 +22,7 @@ create table if not exists Event (
     title varchar(50),
     description varchar(300),
     start_date date,
-    end_date date
+    end_date date,
+    approx_hours float,
+    location varchar(100)
 );

@@ -1,4 +1,4 @@
-package p466.volunteer;
+package p466.volunteer.domain;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
