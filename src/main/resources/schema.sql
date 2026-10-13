@@ -17,6 +17,11 @@ create table if not exists User_Roles (
     foreign key (user_id) references Users(id)
 );
 
+create table if not exists Organization (
+    id identity,
+    name varchar(50) not null
+);
+
 create table if not exists Event (
     id identity,
     title varchar(50),
@@ -24,5 +29,9 @@ create table if not exists Event (
     start_date date,
     end_date date,
     approx_hours float,
-    location varchar(100)
+    location varchar(100),
+    user_id bigint,
+    organization_id bigint,
+    foreign key (organization_id) references Organization(id),
+    foreign key (user_id) references Users(id)
 );

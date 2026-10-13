@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <title>Volunteer Finder</title>
     <link rel="stylesheet" type="text/css" th:href="@{../css/styles.css}" />
@@ -23,7 +25,9 @@
     <div>
         <h1>Events Near You</h1>
         <br>
-        <a class="create-event" href="/create">Create an event</a>
+        <div sec:authorize="hasRole('ORGANIZER')">
+            <a th:href="@{/create}">Create an Event</a>
+        </div>
         <div class="events">
             <div class="event" th:each="event: ${eventsList}">
                 <p class="title1" th:text="${event.title}"></p>
