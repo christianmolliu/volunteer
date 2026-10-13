@@ -5,11 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import p466.volunteer.User;
-import p466.volunteer.UserRole;
+import p466.volunteer.domain.User;
+import p466.volunteer.domain.UserRole;
 import p466.volunteer.data.UserRepository;
 import p466.volunteer.data.UserRolesRepository;
-import p466.volunteer.security.RegistrationForm;
 
 @Controller
 @RequestMapping("/register")

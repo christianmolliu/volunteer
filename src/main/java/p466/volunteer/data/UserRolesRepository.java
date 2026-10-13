@@ -1,7 +1,7 @@
 package p466.volunteer.data;
 
 import org.springframework.data.repository.CrudRepository;
-import p466.volunteer.UserRole;
+import p466.volunteer.domain.UserRole;
 
 import java.util.List;
 

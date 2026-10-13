@@ -16,16 +16,23 @@
                 <form method="POST" th:action="@{/logout}">
                     <input type="submit" value="Logout">
                 </form>
+                <a href=""><img class="noti" th:src="@{images/noti-icon.png}"></a>
             </div>
         </div>
     </div>
-    <h1>Events Near You</h1>
-    <br>
-    <a class="create-event" href="/create">Create an event</a>
-    <div class="events">
-        <div class="event" th:each="event: ${eventsList}">
-            <p class="title1" th:text="${event.title}"></p>
-            <p class="d" th:text="${event.description}"></p>
+    <div>
+        <h1>Events Near You</h1>
+        <br>
+        <a class="create-event" href="/create">Create an event</a>
+        <div class="events">
+            <div class="event" th:each="event: ${eventsList}">
+                <p class="title1" th:text="${event.title}"></p>
+                <p class="d" th:text="${event.description}"></p>
+                <p th:text="${event.startDate}"}></p>
+                <p th:text="${event.endDate}"}></p>
+                <p th:text="${event.approxHours}"></p>
+                <p th:text="${event.location}"></p>
+            </div>
         </div>
     </div>
 </body>

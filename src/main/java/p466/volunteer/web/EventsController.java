@@ -1,17 +1,14 @@
 package p466.volunteer.web;
 
-import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
-import p466.volunteer.Event;
-import p466.volunteer.User;
+import p466.volunteer.domain.Event;
+import p466.volunteer.domain.User;
 import p466.volunteer.data.EventRepository;
 
 @Controller

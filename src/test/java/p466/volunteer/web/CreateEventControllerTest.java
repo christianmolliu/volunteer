@@ -8,8 +8,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-import p466.volunteer.User;
-import p466.volunteer.UserRole;
+import p466.volunteer.domain.User;
+import p466.volunteer.domain.UserRole;
 import p466.volunteer.data.EventRepository;
 import p466.volunteer.data.UserRepository;
 import p466.volunteer.data.UserRolesRepository;
