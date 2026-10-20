@@ -36,6 +36,9 @@
                 <p th:text="${event.endDate}"}></p>
                 <p th:text="${event.approxHours}"></p>
                 <p th:text="${event.location}"></p>
+                <div th:if="${user != null}">
+                    <a th:href="@{/apply}">Apply</a>
+                </div>
             </div>
         </div>
     </div>
