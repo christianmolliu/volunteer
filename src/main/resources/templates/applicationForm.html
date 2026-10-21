@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Volunteer Finder</title>
+    <link rel="stylesheet" type="text/css" th:href="@{../css/styles.css}" />
+</head>
+<body>
+<div class="header">
+    <img class="logo" th:src="@{images/black-white-letter-v-minimalistic-lines-logo.svg}"/>
+    <div class="login-logout">
+        <div class="login-reg" th:if="${user == null}">
+            <a href="/login">login</a>
+            <a href="/register">register</a>
+        </div>
+        <div class="logout" th:if="${user != null}">
+            <form method="POST" th:action="@{/logout}">
+                <input type="submit" value="Logout">
+            </form>
+            <img class="noti" th:src="@{images/noti-icon.png}">
+        </div>
+    </div>
+</div>
+<form method="POST" th:action="@{/apply}" th:object="${application}">
+    <input type="hidden" th:field="*{eventId}">
+    <h1>Apply</h1>
+    <div>
+        <h2>Apply For The Event</h2>
+        <p class="title1" th:text="${event.title}"></p>
+        <p class="d" th:text="${event.description}"></p>
+        <p th:text="${event.startDate}"}></p>
+        <p th:text="${event.endDate}"}></p>
+        <p th:text="${event.approxHours}"></p>
+        <p th:text="${event.location}"></p>
+        <br>
+        <h2>Introduce Yourself!</h2>
+        <input type="text" th:field="*{description}">
+    </div>
+    <br>
+    <button>Submit</button>
+</form>
+<a href="/">Back to Events</a>
+</body>
+</html>

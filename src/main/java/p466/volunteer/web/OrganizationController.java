@@ -1,6 +1,7 @@
 package p466.volunteer.web;
 
 import jakarta.validation.Valid;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import p466.volunteer.data.OrganizationRepository;
 import p466.volunteer.domain.Organization;
+import p466.volunteer.domain.User;
 
 @Controller
 @RequestMapping("/organization")
@@ -23,6 +25,11 @@ public class OrganizationController {
     @ModelAttribute("org")
     public Organization createOrganization() {
         return new Organization();
+    }
+
+    @ModelAttribute
+    public User getUserInfo(Authentication authentication) {
+        return (User) authentication.getPrincipal();
     }
 
     @GetMapping("/create")

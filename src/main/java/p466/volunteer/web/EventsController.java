@@ -7,17 +7,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
+import org.springframework.web.bind.annotation.RequestParam;
+import p466.volunteer.data.OrganizationRepository;
 import p466.volunteer.domain.Event;
 import p466.volunteer.domain.User;
 import p466.volunteer.data.EventRepository;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
 public class EventsController {
 
     private final EventRepository eventRepository;
-
-    public EventsController(EventRepository eventRepository) {
+    public EventsController(EventRepository eventRepository, OrganizationRepository organizationRepository) {
         this.eventRepository = eventRepository;
     }
 
@@ -30,8 +33,7 @@ public class EventsController {
     // add user to model for use in HTML forms
     @ModelAttribute("user")
     public User getUser(Model model, Authentication authentication) {
-        if (authentication != null &&
-                authentication.getPrincipal() instanceof User user) {
+        if (authentication != null && authentication.getPrincipal() instanceof User user) {
             return user;
         }
         return null;
@@ -40,6 +42,12 @@ public class EventsController {
     @GetMapping("/")
     public String getEvents() {
         return "events";
+    }
+
+    @GetMapping("/events")
+    public String getEventsForOrg(@RequestParam Long organizationId) {
+        List<Event> events = eventRepository.findAllByOrganizationId(organizationId);
+
     }
 
 }

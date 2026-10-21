@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Volunteer Finder</title>
+    <link rel="stylesheet" type="text/css" th:href="@{../css/styles.css}" />
+</head>
+<body>
+<div class="header">
+    <img class="logo" th:src="@{images/black-white-letter-v-minimalistic-lines-logo.svg}"/>
+    <div class="login-logout">
+        <div class="login-reg" th:if="${user == null}">
+            <a href="/login">login</a>
+            <a href="/register">register</a>
+        </div>
+        <div class="logout" th:if="${user != null}">
+            <form method="POST" th:action="@{/logout}">
+                <input type="submit" value="Logout">
+            </form>
+            <a href=""><img class="noti" th:src="@{images/noti-icon.png}"></a>
+        </div>
+    </div>
+</div>
+<div>
+    <h1>Applications</h1>
+    <br>
+    <div class="events">
+        <div class="event">
+            <p class="title1" th:text="${event.title}"></p>
+            <p class="d" th:text="${event.description}"></p>
+            <p th:text="${event.startDate}"></p>
+            <p th:text="${event.endDate}"></p>
+            <p th:text="${event.approxHours}"></p>
+            <p th:text="${event.location}"></p>
+        </div>
+        <div th:each="eventApp: ${EventApplications}">
+            <form method="POST" th:action="@{/review/{id}(id=${eventApp.id})}">
+                <input type="hidden" name="_method" value="PATCH">
+                <p th:text="${eventApp.description}"></p>
+                <p th:text="${eventApp.status}"></p>
+                <button type="submit" name="status" value="APPROVED">
+                    Approve
+                </button>
+                <button type="submit" name="status" value="REJECTED">
+                    Reject
+                </button>
+            </form>
+        </div>
+        <a href="/">Back to Events</a>
+    </div>
+</div>
+</body>
+</html>

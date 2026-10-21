@@ -35,3 +35,22 @@ create table if not exists Event (
     foreign key (organization_id) references Organization(id),
     foreign key (user_id) references Users(id)
 );
+
+create table if not exists Application (
+    id identity,
+    user_id bigint not null,
+    event_id bigint not null,
+    description varchar(300) not null,
+    status varchar(20),
+    foreign key (user_id) references Users(id),
+    foreign key (event_id) references Organization(id)
+);
+
+create table if not exists Organization_Users (
+    id identity primary key,
+    organization_id bigint not null,
+    user_id bigint not null,
+    foreign key (organization_id) references Organization(id),
+    foreign key (user_id) references Users(id),
+    unique (organization_id, user_id)
+);
