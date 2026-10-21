@@ -46,6 +46,8 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/create", "/create/**").hasRole("ORGANIZER")
+                        .requestMatchers("/apply", "/apply/**").hasRole("USER")
+                        .requestMatchers("/review", "/review/**").hasRole("ORGANIZER")
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form
