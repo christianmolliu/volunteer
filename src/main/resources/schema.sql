@@ -54,3 +54,12 @@ create table if not exists Organization_Users (
     foreign key (user_id) references Users(id),
     unique (organization_id, user_id)
 );
+
+create table if not exists Notification (
+    id identity primary key,
+    description varchar(300) not null,
+    is_read boolean not null default false,
+    user_id bigint not null,
+    created_at timestamp not null,
+    foreign key (user_id) references Users(id)
+);

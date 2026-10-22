@@ -48,6 +48,9 @@ public class SecurityConfig {
                         .requestMatchers("/create", "/create/**").hasRole("ORGANIZER")
                         .requestMatchers("/apply", "/apply/**").hasRole("USER")
                         .requestMatchers("/review", "/review/**").hasRole("ORGANIZER")
+                        .requestMatchers("/organization/invite/**").hasRole("ORGANIZER")
+                        .requestMatchers("/organization/create").hasRole("USER")
+                        .requestMatchers("/organizationHub").hasRole("ORGANIZER")
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form

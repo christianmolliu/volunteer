@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <title>Volunteer Finder</title>
+  <link rel="stylesheet" type="text/css" th:href="@{../css/styles.css}" />
+</head>
+<body>
+<div class="header">
+  <img class="logo" th:src="@{images/black-white-letter-v-minimalistic-lines-logo.svg}"/>
+  <div class="login-logout">
+    <div class="login-reg" th:if="${user == null}">
+      <a href="/login">login</a>
+      <a href="/register">register</a>
+    </div>
+    <div class="logout" th:if="${user != null}">
+      <form method="POST" th:action="@{/logout}">
+        <input type="submit" value="Logout">
+      </form>
+      <a th:href="@{/notifications}"><img class="noti" th:src="@{images/noti-icon.png}"></a>
+    </div>
+  </div>
+</div>
+<div>
+  <h1>Organization Hub</h1>
+  <br>
+  <h2>My Organizations</h2>
+  <div th:each="organization: ${organizations}">
+    <p th:text="${organization.name}"></p>
+    <form method="POST" th:action="@{/organization/invite}">
+      <input type="hidden" name="orgId" th:value="${organization.id}">
+      <h3>Add new User to this Organization</h3>
+      <label>
+        Username:
+        <input type="text" name="username" required>
+      </label>
+      <button type="submit">Add User</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

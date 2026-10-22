@@ -24,12 +24,6 @@ public class EventsController {
         this.eventRepository = eventRepository;
     }
 
-    // iterable of events for events.html
-    @ModelAttribute("eventsList")
-    public Iterable<Event> getAllEvents(Model model) {
-        return eventRepository.findAll();
-    }
-
     // add user to model for use in HTML forms
     @ModelAttribute("user")
     public User getUser(Model model, Authentication authentication) {
@@ -40,14 +34,17 @@ public class EventsController {
     }
 
     @GetMapping("/")
-    public String getEvents() {
+    public String getEvents(Model model) {
+        Iterable<Event> events = eventRepository.findAll();
+        model.addAttribute("eventsList", events);
         return "events";
     }
 
-    @GetMapping("/events")
-    public String getEventsForOrg(@RequestParam Long organizationId) {
+    @GetMapping("/events/mine")
+    public String getEventsForOrg(@RequestParam Long organizationId, Model model) {
         List<Event> events = eventRepository.findAllByOrganizationId(organizationId);
-
+        model.addAttribute("events", events);
+        return "eventsForOrg";
     }
 
 }
