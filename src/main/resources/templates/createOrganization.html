@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="header">
-    <img class="logo" th:src="@{/images/black-white-letter-v-minimalistic-lines-logo.svg}"/>
+    <img class="logo" th:src="@{images/black-white-letter-v-minimalistic-lines-logo.svg}"/>
     <div class="login-logout">
         <div class="login-reg" th:if="${user == null}">
             <a href="/login">login</a>
@@ -16,7 +16,7 @@
             <form method="POST" th:action="@{/logout}">
                 <input type="submit" value="Logout">
             </form>
-            <img class="noti" th:src="@{/images/noti-icon.png}">
+            <a th:href="@{/notifications}"><img class="noti" th:src="@{images/noti-icon.png}"></a>
         </div>
     </div>
 </div>

@@ -5,12 +5,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import p466.volunteer.data.ApplicationRepository;
-import p466.volunteer.data.EventRepository;
-import p466.volunteer.domain.Application;
-import p466.volunteer.domain.Event;
-import p466.volunteer.domain.User;
+import p466.volunteer.data.*;
+import p466.volunteer.domain.*;
 import org.springframework.ui.Model;
+
+import java.util.List;
 
 @Controller
 @RequestMapping
@@ -18,10 +17,16 @@ public class EventApplicationController {
 
     private final ApplicationRepository applicationRepository;
     private final EventRepository eventRepository;
+    private final OrganizationRepository organizationRepository;
+    private final OrganizationUserRepository organizationUserRepository;
+    private final NotificationRepository notificationRepository;
 
-    public EventApplicationController(ApplicationRepository applicationRepository, EventRepository eventRepository) {
+    public EventApplicationController(ApplicationRepository applicationRepository, EventRepository eventRepository, OrganizationRepository organizationRepository, OrganizationUserRepository organizationUserRepository, NotificationRepository notificationRepository) {
         this.applicationRepository = applicationRepository;
         this.eventRepository = eventRepository;
+        this.organizationRepository = organizationRepository;
+        this.organizationUserRepository = organizationUserRepository;
+        this.notificationRepository = notificationRepository;
     }
 
     @ModelAttribute("user")
@@ -54,6 +59,18 @@ public class EventApplicationController {
             return "applicationForm";
         }
         applicationRepository.save(application);
+
+        // send notification to all members of org
+        Event event = eventRepository.findById(application.getEventId()).orElseThrow();
+        long orgId = event.getOrganizationId();
+        List<OrganizationUser> orgUsers = organizationUserRepository.findAllByOrganizationId(orgId);
+        for (OrganizationUser orgUser : orgUsers) {
+            Notification notification = new Notification();
+            notification.setUserId(orgUser.getUserId());
+            notification.setDescription("There's a new application for " + event.getTitle());
+            notificationRepository.save(notification);
+        }
+
         return "redirect:/";
     }
 }

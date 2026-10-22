@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <title>Volunteer Finder</title>
+  <link rel="stylesheet" type="text/css" th:href="@{../css/styles.css}" />
+</head>
+<body>
+<div class="header">
+  <img class="logo" th:src="@{images/black-white-letter-v-minimalistic-lines-logo.svg}"/>
+  <div class="login-logout">
+    <div class="login-reg" th:if="${user == null}">
+      <a href="/login">login</a>
+      <a href="/register">register</a>
+    </div>
+    <div class="logout" th:if="${user != null}">
+      <form method="POST" th:action="@{/logout}">
+        <input type="submit" value="Logout">
+      </form>
+      <a th:href="@{/notifications}"><img class="noti" th:src="@{images/noti-icon.png}"></a>
+    </div>
+  </div>
+</div>
+<div>
+  <h1>Notifications</h1>
+  <div th:each="notification: ${notifications}">
+    <p th:text="${notification.description}"></p>
+    <p th:text="${notification.createdAt}"></p>
+  </div>
+</div>
+</body>
+</html>

@@ -18,7 +18,7 @@
                 <form method="POST" th:action="@{/logout}">
                     <input type="submit" value="Logout">
                 </form>
-                <a href=""><img class="noti" th:src="@{images/noti-icon.png}"></a>
+                <a th:href="@{/notifications}"><img class="noti" th:src="@{images/noti-icon.png}"></a>
             </div>
         </div>
     </div>
@@ -27,6 +27,10 @@
         <br>
         <div sec:authorize="hasRole('ORGANIZER')">
             <a th:href="@{/create}">Create an Event</a>
+            <a th:href="@{/organizationHub}">Organization Hub</a>
+        </div>
+        <div>
+            <a th:href="@{/organization/create}">Create an Organization</a>
         </div>
         <div class="events">
             <div class="event" th:each="event: ${eventsList}">
