@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotNull;
 import java.sql.Date;
 
 @Data
-@Table
+@Table("event")
 public class Event {
 
     @Id

@@ -9,7 +9,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.time.LocalDateTime;
 
 @Data
-@Table
+@Table("notification")
 public class Notification {
 
     @Id

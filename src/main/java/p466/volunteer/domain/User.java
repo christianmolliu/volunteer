@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Table("USERS")
+@Table("users")
 @Data
 public class User implements UserDetails {
 

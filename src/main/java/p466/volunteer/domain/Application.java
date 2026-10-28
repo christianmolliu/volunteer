@@ -7,7 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Data
-@Table
+@Table("application")
 public class Application {
 
     @Id

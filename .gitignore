@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Database files and migration backups ###
+data/
+h2-export.sql
+postgres-import.sql
+postgres-before-migration.dump
