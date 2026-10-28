@@ -7,9 +7,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import p466.volunteer.data.OrganizationRepository;
 import p466.volunteer.domain.User;
 import p466.volunteer.domain.UserRole;
 import p466.volunteer.data.EventRepository;
+
+import java.util.List;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.authentication;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -24,6 +27,9 @@ public class EventsControllerTest {
 
     @MockitoBean
     EventRepository eventRepository;
+
+    @MockitoBean
+    private OrganizationRepository organizationRepository;
 
     @Test
     public void shouldDisplayEvents() throws Exception {
@@ -40,6 +46,7 @@ public class EventsControllerTest {
 
         UserRole role = new UserRole();
         role.setRole("ROLE_USER");
+        user.setRoles(List.of(role));
 
         Authentication authentication =
                 new UsernamePasswordAuthenticationToken(
