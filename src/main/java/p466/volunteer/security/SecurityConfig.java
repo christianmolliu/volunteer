@@ -51,6 +51,7 @@ public class SecurityConfig {
                         .requestMatchers("/organization/invite/**").hasRole("ORGANIZER")
                         .requestMatchers("/organization/create").hasRole("USER")
                         .requestMatchers("/organizationHub").hasRole("ORGANIZER")
+                        .requestMatchers("/actuator/health/**").permitAll()
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form

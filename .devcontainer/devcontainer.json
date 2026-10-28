@@ -1,6 +1,11 @@
 {
-	"name": "HarvestBox Dev Container",
-	"image": "mcr.microsoft.com/devcontainers/java:1-21-bookworm",
-	"forwardPorts": [8080],
-	"postCreateCommand": "./mvnw -q -ntp dependency:go-offline"
+    "name": "HarvestBox Dev Container",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+    },
+    "forwardPorts": [8080],
+    "postCreateCommand": "./mvnw -q -ntp dependency:go-offline"
 }
