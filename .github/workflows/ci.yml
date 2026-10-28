@@ -9,6 +9,27 @@ on:
 jobs:
   build-test:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: volunteer
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: volunteer_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U volunteer -d volunteer_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      TEST_DATASOURCE_URL: jdbc:postgresql://localhost:5432/volunteer_test
+      TEST_DATASOURCE_USERNAME: volunteer
+      TEST_DATASOURCE_PASSWORD: test_password
+
     steps:
       - uses: actions/checkout@v4
 
@@ -34,5 +55,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Build Docker image
         run: docker build -t myapp .
